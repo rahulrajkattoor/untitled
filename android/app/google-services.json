@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "243447360191",
+    "project_id": "mockstore-a975a",
+    "storage_bucket": "mockstore-a975a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243447360191:android:2f1d402008e8d8f2efb40a",
+        "android_client_info": {
+          "package_name": "com.example.untitled"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbVrHtUFMJ4qzgeOWhyVWxyklj3NSaz2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
