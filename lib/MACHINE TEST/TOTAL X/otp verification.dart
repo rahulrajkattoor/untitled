@@ -86,7 +86,7 @@ class _OtpscreenState extends State<Otpscreen> {
       await FirebaseAuth.instance.signInWithCredential(credential);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Homepage()),
+        MaterialPageRoute(builder: (context) => Home()),
       );
     } catch (ex) {
       log(ex.toString());

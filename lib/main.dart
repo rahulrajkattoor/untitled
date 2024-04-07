@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/MACHINE%20TEST/TOTAL%20X/home%20page.dart';
 
 
 import 'MACHINE TEST/TOTAL X/login page.dart';
@@ -8,11 +9,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: FirebaseOptions(
-          apiKey:  "AIzaSyCbVrHtUFMJ4qzgeOWhyVWxyklj3NSaz2Q",
-          appId: "1:243447360191:android:2f1d402008e8d8f2efb40a",
+          apiKey: "AIzaSyC-ZyQFLXBsIYtGu5tqVI-XIym0U_R5uPw",
+          appId: "1:105638790803:android:88fe6a84a084de9a71ef66",
           messagingSenderId: "",
           projectId: "com.example.untitled",
-          storageBucket: "mockstore-a975a.appspot.com"
+          storageBucket: "machinetest-5b7b9.appspot.com"
       ));
 
   runApp(
@@ -28,6 +29,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Login());
+        home: Home());
   }
 }
