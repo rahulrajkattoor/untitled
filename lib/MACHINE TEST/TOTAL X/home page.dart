@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 
 import 'add user.dart';
 import 'contacts.dart';
@@ -82,7 +85,12 @@ class _HomeState extends State<Home> {
             child: ListTile(
               title: Text(filteredContacts[index].name),
               subtitle: Text(filteredContacts[index].contact),
-              leading  : Image(image: AssetImage("assets/image/Custom-Icon-Design-Pretty-Office-2-Man.256.png"),),
+              leading: CircleAvatar(
+                backgroundImage: filteredContacts[index].imagePath != null
+                    ? Image.file(File(filteredContacts[index].imagePath)).image
+                    : AssetImage(
+                        'assets/image/Custom-Icon-Design-Pretty-Office-2-Man.256.png'), // Provide a default image
+              ),
             ),
           );
         },
@@ -93,13 +101,13 @@ class _HomeState extends State<Home> {
             context,
             MaterialPageRoute(
                 builder: (context) => AddUser(
-                  onAddUser: (newContacts) {
-                    setState(() {
-                      contacts.addAll(newContacts);
-                      filteredContacts = contacts;
-                    });
-                  },
-                )),
+                      onAddUser: (newContacts) {
+                        setState(() {
+                          contacts.addAll(newContacts);
+                          filteredContacts = contacts;
+                        });
+                      },
+                    )),
           );
         },
         child: Icon(Icons.add),
@@ -111,7 +119,7 @@ class _HomeState extends State<Home> {
     setState(() {
       filteredContacts = contacts
           .where((contact) =>
-          contact.name.toLowerCase().contains(query.toLowerCase()))
+              contact.name.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }

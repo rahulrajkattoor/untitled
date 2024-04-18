@@ -1,5 +1,6 @@
 class Contact{
   String name;
   String contact;
-  Contact({required this.name,required this.contact});
+  String imagePath;
+  Contact({required this.name,required this.contact,required this.imagePath});
 }

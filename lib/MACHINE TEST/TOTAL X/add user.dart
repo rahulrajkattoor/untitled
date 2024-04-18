@@ -1,8 +1,9 @@
+import 'dart:typed_data';
 import 'dart:io';
 
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'contacts.dart';
 
 class AddUser extends StatefulWidget {
@@ -17,7 +18,19 @@ class AddUser extends StatefulWidget {
 class _AddUserState extends State<AddUser> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  String imageUrl='';
+  String? imagePath;
+
+  Future<void> selectImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      setState(() {
+        // Save the image path to use later
+        imagePath = pickedImage.path;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +42,16 @@ class _AddUserState extends State<AddUser> {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
-            CircleAvatar(child: IconButton(onPressed: (){
-
-
-
-
-            },icon: Icon(Icons.camera_alt),),radius: 30,),
+            GestureDetector(
+              onTap: selectImage,
+              child: CircleAvatar(
+                child: imagePath != null
+                    ? Image.file(File(imagePath!))
+                    : Image(image: AssetImage("assets/image/Custom-Icon-Design-Pretty-Office-2-Man.256.png")),
+                radius: 30,
+              ),
+            ),
             SizedBox(height: 10,),
-
             TextField(
               controller: nameController,
               decoration: InputDecoration(
@@ -61,7 +76,11 @@ class _AddUserState extends State<AddUser> {
                 String contact = phoneController.text.trim();
                 if (name.isNotEmpty && contact.isNotEmpty) {
                   // Create a Contact object with the provided data
-                  Contact newContact = Contact(name: name, contact: contact);
+                  Contact newContact = Contact(
+                    name: name,
+                    contact: contact,
+                    imagePath: imagePath ?? '', // Saving image path
+                  );
                   // Pass the Contact object back to the HomePage
                   widget.onAddUser([newContact]);
                   // Clear the text fields after adding the user
