@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'contacts.dart';
 
 class AddUser extends StatefulWidget {
@@ -13,6 +17,7 @@ class AddUser extends StatefulWidget {
 class _AddUserState extends State<AddUser> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  String imageUrl='';
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,13 @@ class _AddUserState extends State<AddUser> {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
+            CircleAvatar(child: IconButton(onPressed: (){
+
+
+
+
+            },icon: Icon(Icons.camera_alt),),radius: 30,),
+            SizedBox(height: 10,),
 
             TextField(
               controller: nameController,
